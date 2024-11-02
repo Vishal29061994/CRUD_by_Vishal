@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+</head>
+<body>
+    <h3>Please add stusent student info</h3>
+    
+    <form action="" method="post">
+       {{form}}
+       {% csrf_token %}
+        <input type="submit" value="Add">
+    </form>
+
+    <h3>Student Enrolled as below</h3>
+
+    <table>
+    
+        <tr>
+        <th>name</th>
+        <th>Course</th>
+        <th>city</th>
+        <tr>
+        
+        {% for i in info %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.Course}}</td>
+            <td>{{i.city}}</td>
+            <td>
+                <a href="{% url 'updatedata' i.id %}" >Edit</a>
+
+                <form action="{%url 'deletedata' i.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit"  value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
